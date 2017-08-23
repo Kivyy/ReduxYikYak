@@ -11,8 +11,15 @@ module.exports = {
     })
   },
 
-  findById: () => {
+  findById: (id, callback) => {
+    Zone.findById(id,(err,zone) => {
+      if(err){
+        callback(err,null);
+        return
+      }
 
+      callback(null,zone);
+    })
   },
 
   update: () => {
