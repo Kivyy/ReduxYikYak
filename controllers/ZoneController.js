@@ -34,9 +34,7 @@ module.exports = {
     zip.forEach((zipCode) => {
       newZips.push(zipCode.trim());
     })
-    console.log(newZips);
     params['zipCodes'] = newZips
-
     Zone.create(params, (err,zone) => {
       if(err){
         callback(err,null);
