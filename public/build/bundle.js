@@ -9760,9 +9760,9 @@ var _reactDom = __webpack_require__(98);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Zone = __webpack_require__(184);
+var _Zones = __webpack_require__(185);
 
-var _Zone2 = _interopRequireDefault(_Zone);
+var _Zones2 = _interopRequireDefault(_Zones);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9787,7 +9787,7 @@ var App = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_Zone2.default, null)
+        _react2.default.createElement(_Zones2.default, null)
       );
     }
   }]);
@@ -22460,10 +22460,33 @@ var Zone = function (_Component) {
   _createClass(Zone, [{
     key: 'render',
     value: function render() {
+      var zoneProps = this.props.currentZone;
+
       return _react2.default.createElement(
         'div',
-        null,
-        'This is zone.'
+        { style: styles.container },
+        _react2.default.createElement(
+          'h2',
+          { style: { maginBottom: 0 } },
+          _react2.default.createElement(
+            'a',
+            { style: { textDecoration: 'none', color: 'red' }, href: '#' },
+            zoneProps.name
+          )
+        ),
+        _react2.default.createElement(
+          'span',
+          { className: 'details' },
+          ' ',
+          zoneProps.zipCode
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'span',
+          { className: 'details' },
+          ' ',
+          zoneProps.numComments
+        )
       );
     }
   }]);
@@ -22471,7 +22494,88 @@ var Zone = function (_Component) {
   return Zone;
 }(_react.Component);
 
+var styles = {
+  container: {
+    padding: 16,
+    background: '#f9f9f9',
+    marginTop: 12,
+    border: '1px solid #ddd'
+  }
+};
+
 exports.default = Zone;
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(49);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Zone = __webpack_require__(184);
+
+var _Zone2 = _interopRequireDefault(_Zone);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Zones = function (_Component) {
+  _inherits(Zones, _Component);
+
+  function Zones() {
+    _classCallCheck(this, Zones);
+
+    var _this = _possibleConstructorReturn(this, (Zones.__proto__ || Object.getPrototypeOf(Zones)).call(this));
+
+    _this.state = {
+      list: [{ name: 'Zone 1', zipCode: '10012', numComments: 10 }, { name: 'Zone 2', zipCode: '10013', numComments: 20 }, { name: 'Zone 3', zipCode: '10014', numComments: 30 }, { name: 'Zone 4', zipCode: '10015', numComments: 40 }, { name: 'Zone 5', zipCode: '10016', numComments: 50 }]
+    };
+    return _this;
+  }
+
+  _createClass(Zones, [{
+    key: 'render',
+    value: function render() {
+
+      var listItems = this.state.list.map(function (zone, i) {
+        return _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(_Zone2.default, { currentZone: zone })
+        );
+      });
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'ol',
+          null,
+          listItems
+        )
+      );
+    }
+  }]);
+
+  return Zones;
+}(_react.Component);
+
+exports.default = Zones;
 
 /***/ })
 /******/ ]);

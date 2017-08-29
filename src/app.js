@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import Zone from './components/Zone'
+import Zones from './components/Zones'
 
 class App extends Component {
   render(){
     return(
       <div>
-        <Zone/>
+        <Zones />
       </div>
     )
   }
