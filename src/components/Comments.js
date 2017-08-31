@@ -6,6 +6,11 @@ class Comments extends Component {
     super()
 
     this.state = {
+      comment: {
+        username: '',
+        body: ''
+      },
+
       list: [
         {body: 'comment 1' , username: 'user1'},
         {body: 'comment 1' , username: 'user1'},
@@ -14,12 +19,43 @@ class Comments extends Component {
       ]
     }
 
+    this.submitComment = this.submitComment.bind(this);
+    this.updateUsername = this.updateUsername.bind(this);
+    this.updateBody = this.updateBody.bind(this);
   }
+
+  submitComment(e){
+    e.preventDefault();
+    let updatedList = Object.assign([], this.state.list)
+    updatedList.push(this.state.comment)
+    this.setState({
+      list: updatedList
+    })
+  }
+
+  updateUsername(e){
+    let updatedComment = Object.assign({}, this.state.comment)
+    updatedComment['username'] = e.target.value
+
+    this.setState({
+      comment: updatedComment
+    })
+  }
+
+  updateBody(e){
+    let updatedComment = Object.assign({}, this.state.comment)
+    updatedComment['body'] = e.target.value
+
+    this.setState({
+      comment: updatedComment
+    })
+  }
+
   render(){
 
     const listOfComments = this.state.list.map((comment,i) => {
       return (
-        <li><Comment zoneComments={comment} /></li>
+        <li key={i}><Comment zoneComments={comment} /></li>
       )
     })
 
@@ -30,6 +66,12 @@ class Comments extends Component {
           <ul style={{listStyleType: 'none'}}>
             {listOfComments}
           </ul>
+
+          <input onChange={this.updateUsername} className="form-control" type="text" placeholder="username"/><br />
+          <input onChange={this.updateBody} className="form-control" type="text" placeholder="comment"/><br />
+          <button onClick={this.submitComment} className="btn btn-info"> Submit Comment </button>
+
+
         </div>
       </div>
     )
