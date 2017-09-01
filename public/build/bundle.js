@@ -22537,7 +22537,7 @@ var Zones = function (_Component) {
         name: '',
         zipCode: ''
       },
-      list: [{ name: 'Zone 1', zipCode: '10012', numComments: 10 }, { name: 'Zone 2', zipCode: '10013', numComments: 20 }, { name: 'Zone 3', zipCode: '10014', numComments: 30 }, { name: 'Zone 4', zipCode: '10015', numComments: 40 }, { name: 'Zone 5', zipCode: '10016', numComments: 50 }]
+      list: []
     };
 
     _this.updateZone = _this.updateZone.bind(_this);

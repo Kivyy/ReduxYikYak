@@ -12,10 +12,6 @@ class Comments extends Component {
       },
 
       list: [
-        {body: 'comment 1' , username: 'user1'},
-        {body: 'comment 1' , username: 'user1'},
-        {body: 'comment 1' , username: 'user1'},
-        {body: 'comment 1' , username: 'user1'}
       ]
     }
 
