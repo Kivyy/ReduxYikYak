@@ -9,8 +9,7 @@ class Zones extends Component {
         name: '',
         zipCode: ''
       },
-      list: [
-      ]
+      list: []
     }
 
     this.updateZone = this.updateZone.bind(this)
