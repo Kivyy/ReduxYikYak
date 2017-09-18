@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Zone from './Zone'
+import superagent from 'superagent'
 
 class Zones extends Component {
   constructor(){
@@ -14,6 +15,23 @@ class Zones extends Component {
 
     this.updateZone = this.updateZone.bind(this)
     this.addZone = this.addZone.bind(this)
+  }
+
+  componentDidMount(){
+    superagent
+    .get('/api/zone')
+    .query(null)
+    .set('Accept','application/json')
+    .end((err, response) => {
+      if(err) {
+        alert("ERROR:" + err)
+        return
+      }
+      let results = response.body.results
+      this.setState({
+        list: results
+      })
+    })
   }
 
   updateZone(e){

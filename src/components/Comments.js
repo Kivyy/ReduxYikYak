@@ -4,15 +4,12 @@ import Comment from './Comment'
 class Comments extends Component {
   constructor(){
     super()
-
     this.state = {
       comment: {
         username: '',
         body: ''
       },
-
-      list: [
-      ]
+      list: []
     }
 
     this.submitComment = this.submitComment.bind(this);
