@@ -22610,7 +22610,7 @@ var Zones = function (_Component) {
         return _react2.default.createElement(
           'li',
           null,
-          _react2.default.createElement(_Zone2.default, { currentZone: zone })
+          _react2.default.createElement(_Zone2.default, { key: i, currentZone: zone })
         );
       });
 
@@ -24690,6 +24690,10 @@ var _Comment = __webpack_require__(195);
 
 var _Comment2 = _interopRequireDefault(_Comment);
 
+var _superagent = __webpack_require__(188);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24721,6 +24725,18 @@ var Comments = function (_Component) {
   }
 
   _createClass(Comments, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      _superagent2.default.get('/api/comment').query(null).set('Accept', 'application/json').end(function (err, response) {
+        var results = response.body.results;
+        _this2.setState({
+          list: results
+        });
+      });
+    }
+  }, {
     key: 'submitComment',
     value: function submitComment(e) {
       e.preventDefault();
@@ -24758,7 +24774,7 @@ var Comments = function (_Component) {
         return _react2.default.createElement(
           'li',
           { key: i },
-          _react2.default.createElement(_Comment2.default, { zoneComments: comment })
+          _react2.default.createElement(_Comment2.default, { key: i, zoneComments: comment })
         );
       });
 
