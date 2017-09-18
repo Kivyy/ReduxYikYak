@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Zone from './Zone'
 import superagent from 'superagent'
+import {APIManager} from '../utility/index'
 
 class Zones extends Component {
   constructor(){
@@ -18,6 +19,8 @@ class Zones extends Component {
   }
 
   componentDidMount(){
+    APIManager.get('/api/zone',)
+
     superagent
     .get('/api/zone')
     .query(null)

@@ -24,6 +24,12 @@ class Comments extends Component {
     .query(null)
     .set('Accept', 'application/json')
     .end((err, response) => {
+
+      if (err) {
+        alert("ERROR:" + err)
+        return
+      }
+
       let results = response.body.results
         this.setState({
           list: results

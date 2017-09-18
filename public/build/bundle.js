@@ -22539,6 +22539,8 @@ var _superagent = __webpack_require__(188);
 
 var _superagent2 = _interopRequireDefault(_superagent);
 
+var _index = __webpack_require__(196);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22572,6 +22574,8 @@ var Zones = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
+
+      _index.APIManager.get('/api/zone');
 
       _superagent2.default.get('/api/zone').query(null).set('Accept', 'application/json').end(function (err, response) {
         if (err) {
@@ -24730,6 +24734,12 @@ var Comments = function (_Component) {
       var _this2 = this;
 
       _superagent2.default.get('/api/comment').query(null).set('Accept', 'application/json').end(function (err, response) {
+
+        if (err) {
+          alert("ERROR:" + err);
+          return;
+        }
+
         var results = response.body.results;
         _this2.setState({
           list: results
@@ -24852,7 +24862,7 @@ var Comment = function (_Component) {
     value: function render() {
 
       var commentAttr = this.props.zoneComments;
-
+      console.log(commentAttr);
       return _react2.default.createElement(
         'div',
         null,
@@ -24872,6 +24882,11 @@ var Comment = function (_Component) {
           null,
           ' | '
         ),
+        _react2.default.createElement(
+          'span',
+          null,
+          commentAttr.timestamp
+        ),
         _react2.default.createElement('hr', null)
       );
     }
@@ -24881,6 +24896,69 @@ var Comment = function (_Component) {
 }(_react.Component);
 
 exports.default = Comment;
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.APIManager = undefined;
+
+var _APIManager = __webpack_require__(197);
+
+var _APIManager2 = _interopRequireDefault(_APIManager);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.APIManager = _APIManager2.default;
+
+/***/ }),
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _superagent = __webpack_require__(188);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+
+  get: function get(url, params, callback) {
+    _superagent2.default.get(url).query(params).set('Accept', 'application/json').end(function (err, response) {
+      if (err) {
+        callback(err, null);
+        return;
+      }
+      var confirmation = response.body.confirmation;
+
+      if (confirmation != 'success') {
+        callback({ message: response.body.message }, null);
+        return;
+      }
+
+      callback(null, response.body);
+    });
+  },
+
+  post: function post() {},
+
+  put: function put() {},
+
+  delete: function _delete() {}
+};
 
 /***/ })
 /******/ ]);
