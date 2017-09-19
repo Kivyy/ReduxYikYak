@@ -17,7 +17,7 @@ export default {
       if(confirmation != 'success'){
         callback({message: response.body.message}, null)
         return
-      } 
+      }
 
       callback(null, response.body)
     })
@@ -25,7 +25,6 @@ export default {
   },
 
   post: () => {
-
   },
 
   put: () => {
