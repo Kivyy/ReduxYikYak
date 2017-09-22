@@ -8,7 +8,7 @@ export default {
     .query(params)
     .set('Accept','application/json')
     .end((err, response) => {
-      if(err) {
+      if(err){
         callback(err, null)
         return
       }
@@ -18,7 +18,6 @@ export default {
         callback({message: response.body.message}, null)
         return
       }
-
       callback(null, response.body)
     })
 
