@@ -23508,7 +23508,7 @@ var Zones = function (_Component) {
     }
   }, {
     key: 'addZone',
-    value: function addZone() {
+    value: function addZone(e) {
       var _this3 = this;
 
       var updatedZone = Object.assign({}, this.state.zone);

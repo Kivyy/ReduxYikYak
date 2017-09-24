@@ -38,7 +38,7 @@ class Zones extends Component {
     })
   }
 
-  addZone(){
+  addZone(e){
     let updatedZone = Object.assign({}, this.state.zone)
     updatedZone['zipCodes'] = updatedZone.zipCode.split(",")
     console.log(updatedZone);
