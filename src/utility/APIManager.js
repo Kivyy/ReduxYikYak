@@ -30,7 +30,7 @@ export default {
     .set('Accept','application/json')
     .end((err, response ) => {
       if(err){
-        call(err,null)
+        callback(err,null)
         return
       }
       const confirmation = response.body.confirmation

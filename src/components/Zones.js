@@ -9,7 +9,7 @@ class Zones extends Component {
     this.state = {
       zone: {
         name: '',
-        zipCode: ''
+        zipCodes: ''
       },
       list: []
     }
@@ -39,10 +39,19 @@ class Zones extends Component {
   }
 
   addZone(){
-    let updatedList = Object.assign([], this.state.list)
-    updatedList.push(this.state.zone)
-    this.setState({
-      list: updatedList
+    let updatedZone = Object.assign({}, this.state.zone)
+    updatedZone['zipCodes'] = updatedZone.zipCode.split(",")
+    console.log(updatedZone);
+    APIManager.post('/api/zone', updatedZone, (err,response) => {
+      if(err) {
+        alert('ERROR:' + err.message)
+        return
+      }
+      let updatedList = Object.assign([],this.state.list)
+      updatedList.push(response.results);
+      this.setState({
+        list: updatedList
+      })
     })
   }
 

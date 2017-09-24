@@ -23472,7 +23472,7 @@ var Zones = function (_Component) {
     _this.state = {
       zone: {
         name: '',
-        zipCode: ''
+        zipCodes: ''
       },
       list: []
     };
@@ -23509,10 +23509,21 @@ var Zones = function (_Component) {
   }, {
     key: 'addZone',
     value: function addZone() {
-      var updatedList = Object.assign([], this.state.list);
-      updatedList.push(this.state.zone);
-      this.setState({
-        list: updatedList
+      var _this3 = this;
+
+      var updatedZone = Object.assign({}, this.state.zone);
+      updatedZone['zipCodes'] = updatedZone.zipCode.split(",");
+      console.log(updatedZone);
+      _index.APIManager.post('/api/zone', updatedZone, function (err, response) {
+        if (err) {
+          alert('ERROR:' + err.message);
+          return;
+        }
+        var updatedList = Object.assign([], _this3.state.list);
+        updatedList.push(response.results);
+        _this3.setState({
+          list: updatedList
+        });
       });
     }
   }, {
@@ -24728,7 +24739,7 @@ exports.default = {
   post: function post(url, body, callback) {
     _superagent2.default.post(url).send(body).set('Accept', 'application/json').end(function (err, response) {
       if (err) {
-        call(err, null);
+        callback(err, null);
         return;
       }
       var confirmation = response.body.confirmation;
