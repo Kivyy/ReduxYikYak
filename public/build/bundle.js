@@ -24832,11 +24832,21 @@ var Comments = function (_Component) {
   }, {
     key: 'submitComment',
     value: function submitComment(e) {
+      var _this3 = this;
+
       e.preventDefault();
-      var updatedList = Object.assign([], this.state.list);
-      updatedList.push(this.state.comment);
-      this.setState({
-        list: updatedList
+      var currentComment = Object.assign({}, this.state.comment);
+      _index.APIManager.post('/api/comment', currentComment, function (err, response) {
+        if (err) {
+          alert('ERROR:' + err.message);
+          return;
+        }
+        console.log(response);
+        var updatedList = Object.assign([], _this3.state.list);
+        updatedList.push(response.results);
+        _this3.setState({
+          list: updatedList
+        });
       });
     }
   }, {
