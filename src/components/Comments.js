@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import Comment from './Comment'
 import superagent from 'superagent'
+import {APIManager} from '../utility/index'
 
 class Comments extends Component {
   constructor(){
@@ -19,21 +20,14 @@ class Comments extends Component {
   }
 
   componentDidMount(){
-    superagent
-    .get('/api/comment')
-    .query(null)
-    .set('Accept', 'application/json')
-    .end((err, response) => {
-
-      if (err) {
-        alert("ERROR:" + err)
+    APIManager.get('/api/comment', null, (err, response) => {
+      if(err){
+        alert("ERROR:" + err.message)
         return
       }
-
-      let results = response.body.results
-        this.setState({
-          list: results
-        })
+      this.setState({
+        list: response.results
+      })
     })
   }
 

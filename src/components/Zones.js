@@ -19,20 +19,13 @@ class Zones extends Component {
   }
 
   componentDidMount(){
-    APIManager.get('/api/zone',)
-
-    superagent
-    .get('/api/zone')
-    .query(null)
-    .set('Accept','application/json')
-    .end((err, response) => {
+    APIManager.get('/api/zone', null, (err,response) => {
       if(err) {
         alert("ERROR:" + err)
         return
       }
-      let results = response.body.results
       this.setState({
-        list: results
+        list: response.results
       })
     })
   }
